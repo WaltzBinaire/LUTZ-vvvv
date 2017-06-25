@@ -1,0 +1,121 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\Mio\Coding\vvvv\vvvvContributions\modules\LUTZ\ColorSave.v4p" systemname="ColorSave" filename="D:\Mio\Coding\vvvv\Projects\Graphics_Tutorials_Mio\ColorGrader\ColorSave.v4p">
+   <BOUNDS type="Window" left="9900" top="5100" width="9000" height="6000">
+   </BOUNDS>
+   <PACK Name="vvvv-Message" Version="2.9.8">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.4">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE systemname="ColorDecoder (DX11.TextureFX)" filename="texture11\ColorDecoder.tfx" nodename="ColorDecoder (DX11.TextureFX)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2730" top="1695" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="size" visible="1" slicecount="1" values="32">
+   </PIN>
+   <PIN pinname="Query" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="1">
+   <BOUNDS type="Box" left="2745" top="405" width="885" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2745" top="405" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
+   </LINK>
+   <NODE systemname="Writer (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Writer (DX11.Texture 2d)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="3630" top="2655" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Format" slicecount="1" values="Png">
+   </PIN>
+   <PIN pinname="Filename" slicecount="1" visible="1" values="ColorMaps\Orginal.png">
+   </PIN>
+   <PIN pinname="Write" visible="1">
+   </PIN>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="4">
+   <BOUNDS type="Box" left="5835" top="165" width="1395" height="300">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5835" top="165" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="ColorMaps\Orginal.png">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="render">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="3" dstpinname="Filename" linkstyle="VHV">
+   <LINKPOINT x="5830" y="1300">
+   </LINKPOINT>
+   <LINKPOINT x="3875" y="1790">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="4170" top="165" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4170" top="165" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Write">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Write" linkstyle="Bezier">
+   <LINKPOINT x="4200" y="1650">
+   </LINKPOINT>
+   <LINKPOINT x="4200" y="1650">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="3" dstpinname="Texture In" linkstyle="VHV">
+   <LINKPOINT x="2785" y="2050">
+   </LINKPOINT>
+   <LINKPOINT x="3635" y="2540">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="6">
+   <BOUNDS type="Box" left="2745" top="3405" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2745" top="3405" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled" linkstyle="Bezier">
+   <LINKPOINT x="4185" y="1170">
+   </LINKPOINT>
+   <LINKPOINT x="3945" y="1170">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>

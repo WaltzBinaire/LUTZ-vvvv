@@ -1,0 +1,215 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\Mio\Coding\vvvv\vvvvContributions\modules\LUTZ\Lutz (DX11.Texture2d Color).v4p" systemname="Lutz (DX11.Texture2d Color)" filename="D:\Mio\Coding\vvvv\vvvvContributions\modules\LUTZ\Lutz (DX11.Texture2d Color).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="3030" top="9660" width="14865" height="9090">
+   </BOUNDS>
+   <PACK Name="vvvv-Message" Version="2.9.8">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.4">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE systemname="ColorLoad" filename="subpatches\ColorLoad.v4p" nodename="ColorLoad.v4p" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2670" top="3360" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="13305" top="2340" width="15150" height="5955">
+   </BOUNDS>
+   <PIN pinname="size" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2670" top="3360">
+   </BOUNDS>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="FrequentUpdate" visible="1">
+   </PIN>
+   <PIN pinname="Freq" visible="1">
+   </PIN>
+   <PIN pinname="Reload" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="ColorSave" filename="subpatches\ColorSave.v4p" nodename="ColorSave.v4p" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="2670" top="1680" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1" slicecount="1" values="ColorMaps\Orginal.png">
+   </PIN>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Write" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="size" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2670" top="1680">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="5" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3150" top="285" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3150" top="285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Write">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="1" dstpinname="Write">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="6" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="6825" top="285" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6825" top="285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="ColorMaps\Graded.png">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Filename_LUT">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output String" dstnodeid="0" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="6835" y="1935">
+   </LINKPOINT>
+   <LINKPOINT x="3110" y="2115">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1035" top="285" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1035" top="285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="1" dstpinname="Texture In" linkstyle="VHV">
+   <LINKPOINT x="1080" y="1293">
+   </LINKPOINT>
+   <LINKPOINT x="2715" y="1138">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In" linkstyle="VHV">
+   <LINKPOINT x="1095" y="2063">
+   </LINKPOINT>
+   <LINKPOINT x="2670" y="2063">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="9720" top="285" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9720" top="285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled" linkstyle="Bezier">
+   <LINKPOINT x="9340" y="2025">
+   </LINKPOINT>
+   <LINKPOINT x="4100" y="2145">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="11" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="4995" top="285" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4995" top="285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Output String" dstnodeid="1" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="5045" y="1285">
+   </LINKPOINT>
+   <LINKPOINT x="3640" y="1160">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8460" top="285" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8460" top="285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Reload">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="0" dstpinname="FrequentUpdate" linkstyle="Bezier">
+   <LINKPOINT x="8395" y="2120">
+   </LINKPOINT>
+   <LINKPOINT x="3455" y="2140">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="14" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="2685" top="4320" width="2400" height="390">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2685" top="4320" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="14" dstpinname="Input Node">
+   </LINK>
+   <INFO author="princemio" description="Color Correction" tags="DX11 LUT Color Design ">
+   </INFO>
+   <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Reload" linkstyle="Bezier">
+   <LINKPOINT x="8460" y="2130">
+   </LINKPOINT>
+   <LINKPOINT x="3450" y="2130">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>

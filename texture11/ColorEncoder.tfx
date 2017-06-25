@@ -1,0 +1,67 @@
+//@author: princemio
+//@help: standard LUT Creator
+//@tags: color
+//@credits: 
+
+Texture2D texture2d : PREVIOUS;
+Texture2D LUTtex;
+
+SamplerState linearSampler : IMMUTABLE
+{
+	
+	Filter =    MIN_MAG_LINEAR_MIP_POINT;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+float2 R:TARGETSIZE;
+struct psInput
+{
+	float4 p : SV_Position;
+	float2 uv : TEXCOORD0;
+};
+float size=32;
+float3 Func(float3 colorIN, Texture2D LUTtex)
+{   
+	//Stepsize
+	float2 s=float2(size*size, size);
+	float2 LUT_s =  1 / s;
+	float4 Lut_uv    = 0.0;
+	
+	//find uv
+	colorIN     = saturate(colorIN) * (size-1);
+	Lut_uv.w  = floor(colorIN.b);
+	Lut_uv.xy = (colorIN.rg + 0.5) * LUT_s;
+		
+	Lut_uv.x += Lut_uv.w * LUT_s.y;
+	Lut_uv.z  = Lut_uv.x + LUT_s.y;
+	
+	//resize to R
+	float2 uvL1=Lut_uv.xy/R * s;
+	float2 uvL2=Lut_uv.zy/R * s;
+	
+	//interpolate blue
+	float3 c=lerp(LUTtex.SampleLevel(linearSampler, uvL1, 0).rgb, LUTtex.SampleLevel(linearSampler, uvL2, 0).rgb, colorIN.b - Lut_uv.w);
+	return c;
+}
+
+float4 PS(psInput input) : SV_Target
+{	
+	float4 color = texture2d.SampleLevel(linearSampler, input.uv.xy, 0);
+	color.rgb = Func(color.rgb,LUTtex);
+	return color;
+	
+};
+
+
+
+technique10 Process
+{
+	pass P0
+	{
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+
+
+
